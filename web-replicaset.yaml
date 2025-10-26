@@ -17,19 +17,19 @@ spec:
         image: 339712930646.dkr.ecr.us-east-1.amazonaws.com/webapp-ecr:latest
         ports:
         - containerPort: 8080
-        env:  # MOVED INSIDE CONTAINERS SECTION
-        - name: DBPORT
-          value: "3306"
-        - name: DBHOST
-          value: "mysql-service"  # Use service name, not pod name
-        - name: DATABASE
-          value: "employees"
-        - name: DBUSER
-          value: "root"
-        - name: DBPWD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-root-pw
-              key: password
+      env:
+      - name: DBPORT
+        value: "3306"
+      - name: DBHOST
+        value: "mysql-db"  # Use the MySQL pod name as host
+      - name: DATABASE
+        value: "employees"
+      - name: DBUSER
+        value: "root"
+      - name: DBPWD
+        valueFrom:
+          secretKeyRef:
+            name: mysql-root-pw
+            key: password
       imagePullSecrets:
       - name: ecr-registry-secret
