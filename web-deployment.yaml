@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: employees
-        image: 339712930646.dkr.ecr.us-east-1.amazonaws.com/employees:latest
+        image: 339712930646.dkr.ecr.us-east-1.amazonaws.com/webapp-ecr:latest
         ports:
         - containerPort: 8080
         env:
