@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: employees-rs
@@ -14,6 +14,22 @@ spec:
     spec:
       containers:
       - name: employees
-        image: 339712930646.dkr.ecr.us-east-1.amazonaws.com/mysql-ecr:latest
+        image: 339712930646.dkr.ecr.us-east-1.amazonaws.com/webapp-ecr:latest
         ports:
         - containerPort: 8080
+      env:
+      - name: DBPORT
+        value: "3306"
+      - name: DBHOST
+        value: "mysql-db"  # Use the MySQL pod name as host
+      - name: DATABASE
+        value: "employees"
+      - name: DBUSER
+        value: "root"
+      - name: DBPWD
+        valueFrom:
+          secretKeyRef:
+            name: mysql-root-pw
+            key: password
+      imagePullSecrets:
+      - name: ecr-registry-secret
