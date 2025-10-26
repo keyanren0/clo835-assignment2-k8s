@@ -10,3 +10,5 @@ spec:
     image: 339712930646.dkr.ecr.us-east-1.amazonaws.com/webapp-ecr:latest
     ports:
     - containerPort: 8080
+    imagePullSecrets:
+    - name: ecr-registry-secret
