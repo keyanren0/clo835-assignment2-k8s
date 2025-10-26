@@ -24,6 +24,10 @@ spec:
         secretKeyRef:
           name: mysql-root-pw
           key: password
+
+
+
+
     - name: PORT
       value: "8080"
   imagePullSecrets:
