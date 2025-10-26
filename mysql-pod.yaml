@@ -7,12 +7,14 @@ metadata:
 spec:
   containers:
   - name: mysql
-    image: mysql:5.7
+    image: 339712930646.dkr.ecr.us-east-1.amazonaws.com/mysql-ecr:latest
     env:
     - name: MYSQL_ROOT_PASSWORD
       valueFrom:
         secretKeyRef:
-            name: mysql-root-pw
-            key: password
+          name: mysql-root-pw
+          key: password
     ports:
     - containerPort: 3306
+  imagePullSecrets:
+  - name: ecr-registry-secret
