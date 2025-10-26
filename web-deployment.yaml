@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: employees-deployment
+  name: webapp-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: employees
+      app: webapp
   template:
     metadata:
       labels:
-        app: employees
+        app: webapp
     spec:
       containers:
-      - name: employees
+      - name: webapp
         image: 339712930646.dkr.ecr.us-east-1.amazonaws.com/webapp-ecr:v2
         ports:
         - containerPort: 8080
