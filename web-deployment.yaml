@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employees-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: employees
+  template:
+    metadata:
+      labels:
+        app: employees
+    spec:
+      containers:
+      - name: employees
+        image: 339712930646.dkr.ecr.us-east-1.amazonaws.com/employees:1.0
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DBPORT
+          value: "3306"
+        - name: DBHOST
+          value: "mysql-db" 
+        - name: DATABASE
+          value: "employees"
+        - name: DBUSER
+          value: "root"
+        - name: DBPWD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-root-pw
+              key: password
+      imagePullSecrets:
+      - name: ecr-registry-secret

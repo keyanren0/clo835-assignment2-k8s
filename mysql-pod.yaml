@@ -14,9 +14,6 @@ spec:
         secretKeyRef:
           name: mysql-root-pw
           key: password
-
-
-
     ports:
     - containerPort: 3306
   imagePullSecrets:
